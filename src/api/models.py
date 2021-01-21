@@ -73,7 +73,7 @@ class Cities(db.Model):
     updated_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     deleted_at = db.Column(db.DateTime)
     city_name = db.Column(db.String(50), nullable=False)
-    image = db.Column(db.String(150), nullable=False)
+    image = db.Column(db.String(500), nullable=False)
     population = db.Column(db.String(150), nullable=False)
     cost_of_living = db.Column(db.String(150), nullable=False)
     average_highest_temp = db.Column(db.String(150), nullable=False)
@@ -109,15 +109,15 @@ class Cities(db.Model):
             'population_density': str
         }
 
-        def serialize_all_types(self):
-            return {
-                'city_name': str,
-                'image': str,
-                'population': str,
-                'cost_of_living': str,
-                'average_highest_temp': str,
-                'average_lowest_temp': str,
-                'population_density': str
+    def serialize_all_types(self):
+        return {
+            'city_name': str,
+            'image': str,
+            'population': str,
+            'cost_of_living': str,
+            'average_highest_temp': str,
+            'average_lowest_temp': str,
+            'population_density': str
         }
 
 

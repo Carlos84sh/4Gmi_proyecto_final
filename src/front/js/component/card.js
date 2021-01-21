@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export const Card = getcities => {
+export const Card = props => {
+	const { city } = props;
 	const [like, setLike] = useState("far fa-heart text-danger");
-
 	const handleClick = event => {
 		if (like == "far fa-heart text-danger") {
 			setLike("fas fa-heart text-danger");
@@ -14,14 +15,21 @@ export const Card = getcities => {
 		}
 	};
 	return (
-		<div className="card d-flex flex-column topCityCard" key={id}>
-			<Link to="/city" onMouseOver={info}>
-				<p>{city_Name}</p>
-				<img src={image} className="card-img-top" alt={city_Name} />
+		<div className="card d-flex flex-column topCityCard">
+			<Link
+				to="/city"
+				onMouseOver={() => {
+					console.log("info funciton");
+				}}>
+				<p>{city.city_name}</p>
+				<img src={city.image} className="card-img-top" alt={city.city_name} />
 			</Link>
 			<button id="likeButton" onClick={() => handleClick(event)}>
-				<i className={like} title={city_Name} />
+				<i className={like} title={city.city_name} />
 			</button>
 		</div>
 	);
+};
+Card.propTypes = {
+	city: PropTypes.object
 };

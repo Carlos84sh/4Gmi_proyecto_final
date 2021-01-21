@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const baseUrl = "https://3001-e6c24093-e657-4630-bdff-9f131f2505fc.ws-eu03.gitpod.io/api";
+=======
+const baseUrl = "https://3001-f72856cc-229f-489f-bd7c-40f05e176c72.ws-eu03.gitpod.io/api";
+>>>>>>> 91b221646dbbe61693ef8d3c89a90c0b412cc894
 
 const cityPopulationURL = null; //LA API DEL INE ES UN CAOS
 const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo relacionado con tiempo, es más facil que la del ine

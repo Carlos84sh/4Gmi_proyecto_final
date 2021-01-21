@@ -27,7 +27,7 @@ export const Home = () => {
 	};
 
 	const allCities = store.cities.map((city, index) => {
-		console.log("city", city, index);
+		return <Card key={index} city={city} />;
 	});
 	return (
 		<>
@@ -85,30 +85,7 @@ export const Home = () => {
 				</div>*/}
 			</div>
 			<h2 className="text-center">Elige el próximo destino</h2>
-			<div className="container row">
-				<div
-					className="card col-2"
-					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
-					<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
-				</div>
-
-				<div
-					className="card col-2"
-					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
-					<img src="https://picsum.photos/id/277/200/200" className="card-img-top" alt="..." />
-				</div>
-				<div
-					className="card col-2"
-					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
-					<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
-				</div>
-
-				<div
-					className="card col-2"
-					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
-					<img src="https://picsum.photos/id/277/200/200" className="card-img-top" alt="..." />
-				</div>
-			</div>
+			<div className="container row">{allCities}</div>
 		</>
 	);
 };
