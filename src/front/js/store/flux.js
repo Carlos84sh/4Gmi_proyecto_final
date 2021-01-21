@@ -1,5 +1,4 @@
-
-const baseUrl = "https://3001-dbcf8740-affe-4a4a-a34d-7a162089c141.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-e6c24093-e657-4630-bdff-9f131f2505fc.ws-eu03.gitpod.io/api";
 
 const cityPopulationURL = null; //LA API DEL INE ES UN CAOS
 const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo relacionado con tiempo, es más facil que la del ine
@@ -33,10 +32,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
-				///////////////////////// FETCH
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
+						//creo que acá debemos crear un store de users.. es por eso que después de crear sergio decía derivarlo a login y no a home?
 						console.log(data, "usuario creado");
 						callback();
 					});
@@ -44,7 +43,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			login(data, callback) {
 				const actions = getActions();
-				console.log(data, "inicio del flux, data que recibe");
 				const endpoint = `${baseUrl}/login`;
 				const config = {
 					method: "POST",
@@ -63,7 +61,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ token: data.token });
 						actions.test();
 						callback();
-						console.log(data, "usuario logeado y redirigido al home");
 					});
 			},
 
@@ -73,7 +70,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addFav(item) {
-				//añadir a la lista
 				const store = getStore();
 				if (store.favorites.includes(item) == true) {
 					let newList = store.favorites.filter((element, index) => {
@@ -85,33 +81,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					newList.push(item);
 					setStore({ favorites: newList });
 				}
-				//console.log(store.favorites);
 			},
 
 			deleteFav(item) {
-				//eliminar de la lista
 				const store = getStore();
 				let newList = store.favorites.filter(element => {
 					return element != item;
 				});
 				setStore({ favorites: newList });
-				//console.log(store.favorites);
 			},
 
-			//HE CREADO EL FETCH DE API, para cuando consigamos ver como carajo funciona el ine
-			population() {
-				const store = getStore();
-				const endpoint = `${cityPopulationURL}`;
-				const config = {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json"
-					}
-				};
-				fetch(endpoint, config)
-					.then(response => response.json())
-					.then(data => console.log("DATOS DE POBLACION", data));
-			},
 			getAllCities() {
 				const store = getStore();
 				const endpoint = `${baseUrl}/cities`;
@@ -137,7 +116,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
-				///////////////////////// FETCH
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
@@ -148,7 +126,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Creo que test se puede borrar
 			test() {
 				const store = getStore();
-				console.log({ TOKEN_TEST: store.token }, "token que recibe para el login");
 				const endpoint = `${baseUrl}/test`;
 				const config = {
 					method: "GET",
